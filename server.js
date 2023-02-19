@@ -14,13 +14,11 @@ app.use(function(req, res, next) {
 });
 app.use('/api/product', require('./api/product'));
 
-if (process.env.NODE_ENV === 'production') {
   
   app.use(express.static('client/dist'));
   app.get('*', (req, res) => {
     res.sendFile(path.resolve(__dirname, 'client', 'dist', 'index.html'));
   });
-}
 connectDB();
 
 app.listen(PORT, () => {
